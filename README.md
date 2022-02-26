@@ -6,5 +6,5 @@ A simple discord bot for communication through servers made in python, an odd nu
 Bot prefix: ``=``
 
 - Commands
-  - =call // Looks and gets you on an available connection
-  - =hangup // Hangs up from the current connection
+  - **=call** | Looks and gets you on an available connection
+  - **=hangup** | Hangs up from the current connection
