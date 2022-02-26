@@ -9,7 +9,7 @@ client = commands.Bot(command_prefix = '=', intents = intents)
 queue = []
 sessions = {}
 
-packets = {}
+msgs = {}
 
 @client.event
 async def on_ready():
@@ -27,7 +27,7 @@ async def call(ctx):
     else:
         await ctx.channel.send("You are already waiting for a connection.")
 
-    await create_connection()
+    await start_session()
 
 @client.command()
 async def hangup(ctx):
@@ -41,12 +41,12 @@ async def hangup(ctx):
     await client.get_channel(communicating_with).send("The other party hanged up.")
 
 async def transmit(channel):
-    data = packets[channel]
+    data = msgs[channel]
 
     await client.get_channel(channel).send(data)
-    del packets[channel]
+    del msgs[channel]
 
-async def create_connection():
+async def start_session():
     if len(queue) % 2 == 0 and len(queue) > 0:
         id1, id2 = queue[0], queue[1]
         
@@ -65,7 +65,7 @@ async def on_message(ctx):
 
     if channel in sessions and author.id != client.user.id:
         if ctx.content != "=hangup":
-            packets[sessions[channel]] = f"**[{author}]:** {ctx.content}"
+            msgs[sessions[channel]] = f"**[{author}]:** {ctx.content}"
         
             await transmit(sessions[channel])
 
