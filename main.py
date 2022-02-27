@@ -23,9 +23,10 @@ async def call(ctx):
         await ctx.channel.send("Waiting for an available connection.")
         queue.append(channel)
     elif channel in sessions:
-        await ctx.channel.send("You are already in a connection.")
+        await ctx.channel.send("You are already connected.")
     else:
-        await ctx.channel.send("You are already waiting for a connection.")
+        await ctx.channel.send("Stopped looking for an available connection.")
+        queue.remove(channel)
 
     await start_session()
 
