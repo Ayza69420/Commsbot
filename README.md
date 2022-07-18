@@ -1,5 +1,5 @@
 # Commsbot
-A simple discord bot for communication through servers made in python, an odd number of connections in the queue are required (2,4,6,8,...) to start a session, whether it's in different servers or not.
+A simple discord bot for communication through servers made in python, an even number of connections in the queue are required (2,4,6,8,...) to start a session, whether it's in different servers or not.
 
 # Commands & Prefix
 
